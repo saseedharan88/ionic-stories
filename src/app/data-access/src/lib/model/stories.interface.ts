@@ -5,7 +5,7 @@ export interface IApp {
 }
 
 export interface IAppState {
-  AppState: IApp;
+  appState: IApp;
 }
 
 export const initialAppState: IApp = {
@@ -13,3 +13,9 @@ export const initialAppState: IApp = {
   password: null,
   authenticationMessage: null,
 };
+
+export interface IStory {
+  id?: string;
+  title: string;
+  content: string;
+}

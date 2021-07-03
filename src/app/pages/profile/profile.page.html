@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <p *ngIf="errorMessage" style="color: white;">{{ errorMessage }}</p>
+  <ion-card>
+  <form (ngSubmit)="profileUpdate()" [formGroup]="profile">
+    
+      <div class="input-group">
+        <ion-item>
+          <ion-input type="firstName" placeholder="First Name" formControlName="firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="lastName" placeholder="Last Name" formControlName="lastName"></ion-input>
+        </ion-item>
+      </div>
+      <ion-button type="submit" expand="block" [disabled]="!profile.valid">Update</ion-button>
+    
+  </form>
+  </ion-card>
+</ion-content>
+

@@ -1,5 +1,7 @@
 {
   "name": "stories",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

@@ -13,7 +13,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class BaseService {
   public xsrf: Observable<string>;
-  public xsrfToken: String;
+  public xsrfToken: string;
   defaultOptions = {
     withCredentials: true,
   };
