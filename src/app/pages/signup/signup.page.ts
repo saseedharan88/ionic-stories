@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/data-access/src';
+import { UserService, UsersFacade } from 'src/app/data-access/src';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +14,8 @@ export class SignupPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private _userService: UserService,
-    private route: Router
+    private route: Router,
+    private _usersFacade: UsersFacade
   ) {
     this.credentials = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,7 +31,13 @@ export class SignupPage implements OnInit {
       .subscribe(
         (user) => {
           // Sign up success.
-          this.route.navigate(['/tabs']);
+          console.log('user:', user);
+          const userToSave = {
+            uid: user.user.uid,
+          };
+          this._userService.createUser(userToSave);
+          this._usersFacade.saveCurrentUser({ uid: user.user.uid });
+          this.route.navigate(['/profile']);
         },
         (error) => {
           console.log('er', error);

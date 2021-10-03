@@ -5,6 +5,8 @@ import { from } from 'rxjs';
 import { IUser } from 'src/app/data-access/src';
 import { UserService } from 'src/app/data-access/src';
 import { UsersFacade } from 'src/app/data-access/src/lib/state/users/users.facade';
+import { NavController } from '@ionic/angular';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +15,13 @@ import { UsersFacade } from 'src/app/data-access/src/lib/state/users/users.facad
 })
 export class ProfilePage implements OnInit {
   profile: FormGroup;
+  currentUser: IUser;
   constructor(
     private formBuilder: FormBuilder,
     private _userService: UserService,
     private afAuth: AngularFireAuth,
-    private _usersFacade: UsersFacade
+    private _usersFacade: UsersFacade,
+    private navCtrl: NavController
   ) {
     this.profile = this.formBuilder.group({
       firstName: [''],
@@ -26,19 +30,24 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    // this._usersFacade.loadAllUsers();
-
-    this.afAuth.onAuthStateChanged((currentUser) => {
-      console.log('currentUser:', currentUser);
+    console.log('ngon');
+    this._usersFacade.getCurrentUser().subscribe((user) => {
+      console.log('her:', user);
+      this.currentUser = user;
     });
   }
 
   profileUpdate() {
-    console.log('he:', this.profile.value);
+    console.log('in pf:', this.currentUser);
     const userProfile: IUser = {
-      uid: '1',
+      uid: this.currentUser.uid,
       firstName: this.profile.value.firstName,
       lastName: this.profile.value.lastName,
     };
+    this._userService.updateUser(userProfile);
+  }
+
+  goHomePage() {
+    this.navCtrl.navigateRoot('tabs/home');
   }
 }

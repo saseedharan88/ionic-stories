@@ -42,5 +42,8 @@ export function reducer(
         currentUser,
       };
     }
+    default: {
+      return { ...state };
+    }
   }
 }

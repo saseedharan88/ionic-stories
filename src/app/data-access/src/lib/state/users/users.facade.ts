@@ -29,4 +29,9 @@ export class UsersFacade {
     // Fetch all users from store.
     return this.allUsers$;
   }
+
+  getCurrentUser(): Observable<IUser> {
+    // Fetch current users from store.
+    return this.currentUser$;
+  }
 }

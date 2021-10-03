@@ -22,9 +22,4 @@ export class HomePage {
     this.stories = this._storyService.getStories();
     this.users = this._userService.getUsers();
   }
-
-  logout() {
-    this._userService.signOut();
-    this.route.navigate(['/login']);
-  }
 }

@@ -13,6 +13,10 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { StateModule } from './data-access/src/lib/state/state.module';
+import { HeaderComponent } from './shared/header/header.component';
+import { SharedModule } from './shared/shared.module';
+import { HomePageModule } from './home/home.module';
+import { ProfilePageModule } from './pages/profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +29,9 @@ import { StateModule } from './data-access/src/lib/state/state.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    SharedModule,
+    HomePageModule,
+    ProfilePageModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

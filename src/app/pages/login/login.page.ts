@@ -32,8 +32,8 @@ export class LoginPage implements OnInit {
         (user) => {
           // Sign up success.
           console.log('login suc', user);
-          this._usersFacade.saveCurrentUser({ uid: 'test' });
-          this.route.navigate(['/tabs']);
+          this._usersFacade.saveCurrentUser({ uid: user.user.uid });
+          this.route.navigate(['/profile']);
         },
         (error) => {
           console.log('login er', error);

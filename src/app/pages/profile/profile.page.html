@@ -1,11 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Profile"></app-header>
 <ion-content>
+  <ion-button (click)="goHomePage()" color="transparent" size="small" fill="clear">Home</ion-button>
+  <!-- <ion-label [navPush]="home">Go an Other Page</ion-label> -->
   <p *ngIf="errorMessage" style="color: white;">{{ errorMessage }}</p>
   <ion-card>
+    hey: {{ currentUser | json }}
   <form (ngSubmit)="profileUpdate()" [formGroup]="profile">
     
       <div class="input-group">
@@ -22,3 +21,21 @@
   </ion-card>
 </ion-content>
 
+<!-- <ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button >
+      <ion-icon name="triangle"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button href="/tabs/tab2">
+      <ion-icon name="ellipse"></ion-icon>
+      <ion-label>Tab2 - Menus</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button href="/tabs/tab3">
+      <ion-icon name="square"></ion-icon>
+      <ion-label>Tab 3</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs> -->
